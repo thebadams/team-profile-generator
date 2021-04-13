@@ -36,7 +36,7 @@ class Prompts {
 
     getMenuInput() {
         const {menuPrompt} = this;
-        inquirer.prompt(menuPrompt).then
+        inquirer.prompt(menuPrompt).then((choice) => this.determineNextPrompt(choice.menu))
     }
 
     determineNextPrompt(choice){
