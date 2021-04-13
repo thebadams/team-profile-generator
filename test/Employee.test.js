@@ -1,4 +1,4 @@
-const Employee = require("../lib/Employee")
+const Employee = require("../lib/Employee.js")
 
 
 describe("Employee Class", ()=>{
@@ -6,7 +6,7 @@ describe("Employee Class", ()=>{
         let name = "Brian";
         let id = 1992;
         let email = "bpeteradams@gmail.com"
-        let employee = newEmployee(name, id, email)
+        let employee = new Employee(name, id, email)
         expect(employee).toBeInstanceOf(Employee);
     })
 
@@ -61,7 +61,7 @@ describe("getEmail", ()=>{
         let id = 1992;
         let email = "bpeteradams@gmail.com"
         let employee = new Employee(name, id, email)
-        expect(employee.getName()).toEqual(employee.email)
+        expect(employee.getEmail()).toEqual(employee.email)
     })
 })
 
