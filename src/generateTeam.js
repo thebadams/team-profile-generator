@@ -13,11 +13,12 @@ const Intern = require("../lib/Intern");
 //intern prompts: school
 
 class Prompts {
-    constructor(employeePrompts, managerPrompts, engineerPrompts, internPrompts){
+    constructor(employeePrompts, managerPrompts, engineerPrompts, internPrompts, menuPrompt){
         this.employeePrompts = employeePrompts,
         this.managerPrompts = [...this.employeePrompts, managerPrompts],
         this.engineerPrompts = [...this.employeePrompts,engineerPrompts],
-        this.internPrompts = [...this.employeePrompts, internPrompts]
+        this.internPrompts = [...this.employeePrompts, internPrompts],
+        this.menuPrompt = [menuPrompt]
 
     }
     getManagerInfo(){
@@ -31,6 +32,24 @@ class Prompts {
     getInternInfo(){
         const {internPrompts} = this;
         inquirer.prompt(internPrompts).then((data)=>console.log(new Intern(data.employeeName, data.employeeId, data.employeeEmail, data.internSchool)))
+    }
+
+    getMenuInput() {
+        const {menuPrompt} = this;
+        inquirer.prompt(menuPrompt).then
+    }
+
+    determineNextPrompt(choice){
+        switch(choice){
+            case "Engineer":
+                this.getEngineerInfo()
+                break
+            case "Intern":
+                this.getInternInfo()
+                break
+            case "Finished":
+                return //return gathered information
+        }
     }
 }
 
@@ -72,6 +91,11 @@ const internPrompt = {
     message: "Please input the intern's school"
 }
 
-const prompts = new Prompts(employeePrompts, managerPrompt, engineerPrompt, internPrompt)
+const menuPrompt = {
+    type: 'list',
+    name: 'menu',
+    message: 'Please Choose an Employee to Add to Your Team. Select "Finished" when your team has been built.',
+    choices: ['Engineer', 'Intern', 'Finished']
+}
 
-prompts.getInternInfo()
+const prompts = new Prompts(employeePrompts, managerPrompt, engineerPrompt, internPrompt, menuPrompt)
