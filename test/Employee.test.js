@@ -66,7 +66,7 @@ describe("getEmail", ()=>{
 })
 
 describe("getRole", ()=>{
-    it("Should return this.name", ()=>{
+    it("Should return 'Employee'", ()=>{
         let name = "Brian";
         let id = 1992;
         let email = "bpeteradams@gmail.com"
