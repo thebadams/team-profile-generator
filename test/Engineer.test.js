@@ -67,8 +67,8 @@ describe("Engineer Class", ()=>{
                 let id = 1992;
                 let email = "bpeteradams@gmail.com"
                 let github = "githubusername"
-                let employee = new Engineer(name, id, email, github)
-                expect(employee.getRole()).toEqual("Engineer")
+                let engineer = new Engineer(name, id, email, github)
+                expect(engineer.getRole()).toEqual("Engineer")
         })
 
     })
