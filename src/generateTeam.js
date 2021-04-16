@@ -5,6 +5,7 @@ const Employee = require("../lib/Employee");
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
+const Team = require("../lib/team")
 
 //prompts are arrays of objects
 //employee prompts: name, id, email
@@ -23,15 +24,24 @@ class Prompts {
     }
     getManagerInfo(){
         const {managerPrompts} = this;
-        inquirer.prompt(managerPrompts).then((data)=>new Manager(data.employeeName, data.employeeId, data.employeeEmail, data.officeNum));
+        inquirer.prompt(managerPrompts)
+            .then((data)=>new Manager(data.employeeName, data.employeeId, data.employeeEmail, data.officeNum))
+            .then((manager)=> this.team.manager = manager)
+            .then(()=> this.getMenuInput())
     }
     getEngineerInfo(){
         const {engineerPrompts} = this;
-        inquirer.prompt(engineerPrompts).then((data)=>new Engineer(data.employeeName, data.employeeId, data.employeeEmail, data.engineerGithub));
+        inquirer.prompt(engineerPrompts)
+            .then((data)=>new Engineer(data.employeeName, data.employeeId, data.employeeEmail, data.engineerGithub))
+            .then((engineer)=> this.team.engineers.push(engineer))
+            .then(()=> this.getMenuInput())
     }
     getInternInfo(){
         const {internPrompts} = this;
-        inquirer.prompt(internPrompts).then((data)=>console.log(new Intern(data.employeeName, data.employeeId, data.employeeEmail, data.internSchool)))
+        inquirer.prompt(internPrompts)
+            .then((data)=>console.log(new Intern(data.employeeName, data.employeeId, data.employeeEmail, data.internSchool)))
+            .then((intern)=> this.team.interns.push(intern))
+            .then(()=> this.getMenuInput())
     }
 
     getMenuInput() {
@@ -51,6 +61,16 @@ class Prompts {
                 return //return gathered information
         }
     }
+    startPrompt(){
+        this.team = new Team();
+        this.getManagerInfo()
+
+    }
+
+    endPrompt(){
+        return this.team
+    }
+    
 }
 
 const namePrompt = {
