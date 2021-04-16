@@ -39,8 +39,11 @@ class Prompts {
     getInternInfo(){
         const {internPrompts} = this;
         inquirer.prompt(internPrompts)
-            .then((data)=>console.log(new Intern(data.employeeName, data.employeeId, data.employeeEmail, data.internSchool)))
-            .then((intern)=> this.team.interns.push(intern))
+            .then((data)=>new Intern(data.employeeName, data.employeeId, data.employeeEmail, data.internSchool))
+            .then((intern)=> {
+                console.log(intern)
+                this.team.interns.push(intern)
+            })
             .then(()=> this.getMenuInput())
     }
 
@@ -58,7 +61,7 @@ class Prompts {
                 this.getInternInfo()
                 break
             case "Finished":
-                return //return gathered information
+                this.endPrompt() //return gathered information
         }
     }
     startPrompt(){
@@ -119,3 +122,5 @@ const menuPrompt = {
 }
 
 const prompts = new Prompts(employeePrompts, managerPrompt, engineerPrompt, internPrompt, menuPrompt)
+
+prompts.startPrompt()
