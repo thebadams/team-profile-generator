@@ -1,8 +1,10 @@
-const Team = require("../lib/team")
+const team = require('../lib/team')
 
 function generateHTML(team) {
+    console.log(team)
     const managerCard = team.generateManagerCard()
     const engineerCards = team.generateEngineerCards()
+    console.log(engineerCards)
     const internCards = team.generateInternCards()
 
     const engineerSection = engineerCards.join("/n")
@@ -14,6 +16,7 @@ function generateHTML(team) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -25,3 +28,5 @@ function generateHTML(team) {
 </html>`
     
 }
+
+module.exports = generateHTML

@@ -6,7 +6,8 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 const Team = require("../lib/team")
-
+const generateHTML = require("../src/generateHTML")
+const writeFile = require("../src/writeFile")
 //prompts are arrays of objects
 //employee prompts: name, id, email
 //manager prompts: office number
@@ -71,7 +72,9 @@ class Prompts {
     }
 
     endPrompt(){
-        return this.team
+        let team = this.team;
+        let data = generateHTML(team)
+        return writeFile(data)
     }
     
 }
@@ -123,4 +126,4 @@ const menuPrompt = {
 
 const prompts = new Prompts(employeePrompts, managerPrompt, engineerPrompt, internPrompt, menuPrompt)
 
-prompts.startPrompt()
+module.exports = prompts
