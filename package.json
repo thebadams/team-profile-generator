@@ -1,0 +1,29 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "A command line application to build out an html file that holds information about a web development team's members",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebadams/team-profile-generator.git"
+  },
+  "author": "Brian Adams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thebadams/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/thebadams/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
